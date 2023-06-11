@@ -29,7 +29,7 @@ public class Booking {
     @JoinColumn(name = "room_id")
     private Room room;
     @ManyToMany
-    @JoinTable(name = "visitors",
+    @JoinTable(name = "table_B_V",
             joinColumns = @JoinColumn(name = "booking_id"),
             inverseJoinColumns = @JoinColumn(name = "visitor_id"))
     private List<Visitor> visitors;

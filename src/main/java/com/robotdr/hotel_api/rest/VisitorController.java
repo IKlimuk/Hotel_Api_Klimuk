@@ -35,4 +35,16 @@ public class VisitorController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    @PostMapping("/visitors/{id}/bookings/{bookingId}")
+    public ResponseEntity<Void> updateVisitorBooking(@PathVariable Long id, @PathVariable Long bookingId) {
+        visitorService.addBooking(id, bookingId);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+    }
+    @GetMapping("/visitor/find")
+    public ResponseEntity<Visitor> findStudentByFirstNameParam(@RequestParam String lastNameOrPassport) {
+        return visitorService.findVisitorByLastNameOrPassport(lastNameOrPassport)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
 }

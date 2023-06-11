@@ -5,6 +5,7 @@ import com.robotdr.hotel_api.domain.Room;
 import com.robotdr.hotel_api.domain.Visitor;
 import com.robotdr.hotel_api.dto.RoomDto;
 import com.robotdr.hotel_api.dto.VisitorDto;
+import com.robotdr.hotel_api.repository.BookingRepository;
 import com.robotdr.hotel_api.repository.VisitorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class VisitorService {
     public final VisitorRepository visitorRepository;
+    public final BookingRepository bookingRepository;
 
     public void save(Visitor visitor) {
         visitorRepository.save(visitor);
@@ -46,6 +48,17 @@ public class VisitorService {
                         .map(Booking::getId)
                         .collect(Collectors.toList()))
                 .build();
+    }
+
+    public void addBooking (Long bookingId, Long visitorId) {
+        var visitor = visitorRepository.findById(visitorId).get();
+        var booking = bookingRepository.findById(bookingId).get();
+        visitor.getBookings().add(booking);
+        visitorRepository.save(visitor);
+    }
+
+    public Optional<Visitor> findVisitorByLastNameOrPassport (String lastNameOrPassport) {
+        return visitorRepository.findVisitorByLastNameOrPassport(lastNameOrPassport);
     }
 
 

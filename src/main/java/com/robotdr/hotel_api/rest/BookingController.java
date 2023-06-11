@@ -33,4 +33,20 @@ public class BookingController {
         bookingServise.save(booking);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+    @PostMapping("/bookings/{id}/rooms/{roomId}")
+    public ResponseEntity<Void> updateRoom(@PathVariable Long id, @PathVariable Long roomId) {
+        bookingServise.addRoom(id, roomId);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+    }
+
+    @PostMapping("/bookings/{id}/visitors/{visitorId}")
+    public ResponseEntity<Void> updateVisitor(@PathVariable Long id, @PathVariable Long visitorId) {
+        bookingServise.addVisitor(id, visitorId);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+    }
+    @PostMapping("/bookings/{id}/room_change/{roomId}")
+    public ResponseEntity<Void> changeRoom(@PathVariable Long id, @PathVariable Long roomId) {
+        bookingServise.changeRoom(id, roomId);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+    }
 }

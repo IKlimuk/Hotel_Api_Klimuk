@@ -22,7 +22,7 @@ public class Room {
     private Long id;
     @Column
     private String roomName;
-    @OneToMany
+    @OneToMany(mappedBy = "room")
     private List<Booking> bookings;
 
 }

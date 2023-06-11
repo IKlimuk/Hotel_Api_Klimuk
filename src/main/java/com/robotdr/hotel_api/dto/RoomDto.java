@@ -12,5 +12,5 @@ public class RoomDto {
 
     private String roomName;
 
-    private List<Long> bookingsId;
+    private List<String> bookingsId;
 }

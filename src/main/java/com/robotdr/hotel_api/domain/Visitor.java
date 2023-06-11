@@ -27,7 +27,7 @@ public class Visitor {
     private String passport;
 
     @ManyToMany
-    @JoinTable(name = "bookings",
+    @JoinTable(name = "table_B_V",
             joinColumns = @JoinColumn(name = "visitor_id"),
             inverseJoinColumns = @JoinColumn(name = "booking_id"))
     private List<Booking> bookings;
